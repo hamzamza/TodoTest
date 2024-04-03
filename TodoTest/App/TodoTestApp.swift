@@ -14,6 +14,7 @@ struct TodoTestApp: App {
     }
     let navigationViewModel = NavigationViewModel()
     let authViewModel = AuthViewModel()
+    let taskListViewModel  = TaskListViewModel()
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -21,6 +22,7 @@ struct TodoTestApp: App {
                 ContentView()
                     .environmentObject(navigationViewModel)
                     .environmentObject(authViewModel)
+                    .environmentObject(taskListViewModel )
             }
         }
     }

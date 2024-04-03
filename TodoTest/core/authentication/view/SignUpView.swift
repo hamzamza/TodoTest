@@ -19,15 +19,15 @@ struct SignUpView : View  {
         VStack( alignment  : .center ){
             Image("todo").resizable().scaledToFill().frame(width: 200, height: 200, alignment: .center)
                          VStack{
-                   InputView(text: $firstName, title: "First Name", placeholder: "Enter your first name")
-                   InputView(text: $lastName, title: "Last Name", placeholder: "Enter your last name")
-                   InputView(text: $email, title: "Email Address", placeholder: "Enter your email address")
+                InputView(text: $firstName, title: "First Name", placeholder: "Enter your first name")
+                InputView(text: $lastName, title: "Last Name", placeholder: "Enter your last name")
+                InputView(text: $email, title: "Email Address", placeholder: "Enter your email address")
                 InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureFidld : true   )
-                InputView(text: $repassword, title: "Confirm Password", placeholder: "Confirm your password" , isSecureFidld  : true )
+                InputView(text: $repassword, title: "Confirm Password", placeholder: "Confirm your password" , isSecureFidld  : true)
             }
             Spacer().frame(height: 20)
             CustomButton(title: "create account " , backgroundColor: Color(.systemBlue), foregroundColor: .white){
-                authViewModel.signUp(withEmail: email, withPassword: password, firstName: firstName, lastName: lastName) { success   in
+                authViewModel.signUp(withEmail: email, withPassword: password, firstName: firstName, lastName: lastName, rememberMe : true ) { success   in
                     if success {
                        print("account created ")
                     }
@@ -40,7 +40,6 @@ struct SignUpView : View  {
             if let msg = authViewModel.errorMessage  {
                 Text(msg)
             }
-           
             Spacer()
             Button(
                 action: {

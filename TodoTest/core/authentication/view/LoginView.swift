@@ -17,14 +17,13 @@ struct LoginView : View  {
             Image("todo").resizable().scaledToFill().frame(  width: 400, height: 400,  alignment: .center).padding(.bottom , 20) 
             VStack{
             InputView(text: $email , title: "Email Adress" , placeholder: "example@sqli.com")
-           
             InputView(text: $password , title: "Password" , placeholder: "example password" , isSecureFidld: true )
             }
             Spacer().frame(height: 20)
             CustomButton(title: "Sign In " , backgroundColor: Color(.systemBlue), foregroundColor: .white){
-                authViewModle.signIn(withEmail : email , withPassword  : password ){ isLogedIn in
+                authViewModle.signIn(withEmail : email , withPassword  : password , rememberMe : true ){ isLogedIn in
                     if isLogedIn {
-                        print("loged in ")
+                        navigationViewModel.navigateTo(screen: .tasklist)
                     }else {
                         print("not loged in ")
                     }
@@ -38,7 +37,7 @@ struct LoginView : View  {
             Button(action : {
                 withAnimation(.easeInOut(duration:0.5)){
                     authViewModle.errorMessage = nil 
-                    navigationViewModel.navigateTo(screen: .signIn)
+                    navigationViewModel.navigateTo(screen: .signUp)
                 }
             } , label  : {
                 HStack{

@@ -4,16 +4,16 @@ import Foundation
 class NavigationViewModel: ObservableObject {
     enum Screen {
         case login
-        case signIn
-        case home
+        case signUp
+        case tasklist
         case details
+        case loading
     }
     
-    @Published var currentScreen: Screen = .login
+    @Published var currentScreen: Screen = .loading
     private var screenStack: [Screen] = []
     
     func navigateTo(screen: Screen) {
-        
         screenStack.append(currentScreen)
         currentScreen = screen
     }
@@ -27,4 +27,12 @@ class NavigationViewModel: ObservableObject {
         guard let previousScreen = screenStack.popLast() else { return }
         currentScreen = previousScreen
     }
+    func navigateBasedOnAuthState(isAuthenticated: Bool) {
+            if isAuthenticated {
+                resetAndNavigateTo( screen: .tasklist )
+            } else {
+                resetAndNavigateTo(screen: .login )
+            }
+        }
+
 }

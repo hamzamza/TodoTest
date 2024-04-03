@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		BB4AF24B2BBD54770053E0B0 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF24A2BBD54770053E0B0 /* AuthViewModel.swift */; };
 		BB4AF24F2BBD5B340053E0B0 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF24E2BBD5B340053E0B0 /* NavigationViewModel.swift */; };
+		BB4AF2542BBD8B3D0053E0B0 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF2532BBD8B3D0053E0B0 /* TaskViewModel.swift */; };
+		BB4AF2582BBD8B520053E0B0 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF2572BBD8B520053E0B0 /* TaskListView.swift */; };
+		BB4AF25C2BBD913D0053E0B0 /* Task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF25A2BBD913D0053E0B0 /* Task.xcdatamodeld */; };
+		BB4AF2602BBD92060053E0B0 /* Persister.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF25F2BBD92060053E0B0 /* Persister.swift */; };
+		BB4AF2632BBDA2F90053E0B0 /* LoadingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF2622BBDA2F90053E0B0 /* LoadingPage.swift */; };
 		BB5B56222BBC12B3005D6244 /* TodoTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5B56212BBC12B3005D6244 /* TodoTestApp.swift */; };
 		BB5B56262BBC12B4005D6244 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5B56252BBC12B4005D6244 /* Assets.xcassets */; };
 		BB5B56292BBC12B4005D6244 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5B56282BBC12B4005D6244 /* Preview Assets.xcassets */; };
@@ -26,6 +31,11 @@
 /* Begin PBXFileReference section */
 		BB4AF24A2BBD54770053E0B0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		BB4AF24E2BBD5B340053E0B0 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
+		BB4AF2532BBD8B3D0053E0B0 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		BB4AF2572BBD8B520053E0B0 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		BB4AF25B2BBD913D0053E0B0 /* Task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Task.xcdatamodel; sourceTree = "<group>"; };
+		BB4AF25F2BBD92060053E0B0 /* Persister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persister.swift; sourceTree = "<group>"; };
+		BB4AF2622BBDA2F90053E0B0 /* LoadingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPage.swift; sourceTree = "<group>"; };
 		BB5B561E2BBC12B3005D6244 /* TodoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5B56212BBC12B3005D6244 /* TodoTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTestApp.swift; sourceTree = "<group>"; };
 		BB5B56252BBC12B4005D6244 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +68,7 @@
 			children = (
 				BB5B564F2BBC3CA5005D6244 /* SignUpView.swift */,
 				BB5B56412BBC13AE005D6244 /* LoginView.swift */,
+				BB4AF2622BBDA2F90053E0B0 /* LoadingPage.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -68,6 +79,30 @@
 				BB4AF24A2BBD54770053E0B0 /* AuthViewModel.swift */,
 			);
 			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		BB4AF2512BBD8B1A0053E0B0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				BB4AF2572BBD8B520053E0B0 /* TaskListView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		BB4AF2522BBD8B210053E0B0 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				BB4AF2532BBD8B3D0053E0B0 /* TaskViewModel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		BB4AF25E2BBD91D80053E0B0 /* persistnece */ = {
+			isa = PBXGroup;
+			children = (
+				BB4AF25F2BBD92060053E0B0 /* Persister.swift */,
+			);
+			path = persistnece;
 			sourceTree = "<group>";
 		};
 		BB5B56152BBC12B3005D6244 = {
@@ -89,6 +124,7 @@
 		BB5B56202BBC12B3005D6244 /* TodoTest */ = {
 			isa = PBXGroup;
 			children = (
+				BB4AF25E2BBD91D80053E0B0 /* persistnece */,
 				BB5B56372BBC1331005D6244 /* components */,
 				BB5B56382BBC1331005D6244 /* core */,
 				BB5B563B2BBC1331005D6244 /* model */,
@@ -150,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5B56522BBC5426005D6244 /* User.swift */,
+				BB4AF25A2BBD913D0053E0B0 /* Task.xcdatamodeld */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -173,6 +210,8 @@
 		BB5B56402BBC1382005D6244 /* taskList */ = {
 			isa = PBXGroup;
 			children = (
+				BB4AF2522BBD8B210053E0B0 /* viewmodel */,
+				BB4AF2512BBD8B1A0053E0B0 /* view */,
 			);
 			path = taskList;
 			sourceTree = "<group>";
@@ -254,15 +293,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB4AF25C2BBD913D0053E0B0 /* Task.xcdatamodeld in Sources */,
+				BB4AF2632BBDA2F90053E0B0 /* LoadingPage.swift in Sources */,
 				BB4AF24F2BBD5B340053E0B0 /* NavigationViewModel.swift in Sources */,
 				BB5B56422BBC13AE005D6244 /* LoginView.swift in Sources */,
 				BB5B564A2BBC1A9D005D6244 /* InputView.swift in Sources */,
+				BB4AF2582BBD8B520053E0B0 /* TaskListView.swift in Sources */,
+				BB4AF2542BBD8B3D0053E0B0 /* TaskViewModel.swift in Sources */,
 				BB5B564D2BBC2D5C005D6244 /* ButtonView.swift in Sources */,
 				BB5B563C2BBC1331005D6244 /* ContentView.swift in Sources */,
 				BB4AF24B2BBD54770053E0B0 /* AuthViewModel.swift in Sources */,
 				BB5B56502BBC3CA5005D6244 /* SignUpView.swift in Sources */,
 				BB5B56222BBC12B3005D6244 /* TodoTestApp.swift in Sources */,
 				BB5B56532BBC5426005D6244 /* User.swift in Sources */,
+				BB4AF2602BBD92060053E0B0 /* Persister.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +517,19 @@
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		BB4AF25A2BBD913D0053E0B0 /* Task.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB4AF25B2BBD913D0053E0B0 /* Task.xcdatamodel */,
+			);
+			currentVersion = BB4AF25B2BBD913D0053E0B0 /* Task.xcdatamodel */;
+			path = Task.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BB5B56162BBC12B3005D6244 /* Project object */;
 }
