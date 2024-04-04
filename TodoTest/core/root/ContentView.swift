@@ -5,8 +5,9 @@ struct ContentView: View {
     @EnvironmentObject var navigationViewModel: NavigationViewModel
     @EnvironmentObject var authViewModel : AuthViewModel
     var body: some View {
-        Group {
-                    switch navigationViewModel.currentScreen {
+            VStack{
+            
+                      switch navigationViewModel.currentScreen {
                         case .login:
                             LoginView()
                         case .signUp:
@@ -19,7 +20,7 @@ struct ContentView: View {
                             EmptyView()
                         }
                 }
-                .onAppear {
+            .onAppear {
                     authViewModel.fetchAuthState { isAuthenticated in
                         DispatchQueue.main.async {
                             if navigationViewModel.currentScreen == .loading {

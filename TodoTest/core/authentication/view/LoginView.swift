@@ -13,8 +13,9 @@ struct LoginView : View  {
     @EnvironmentObject var navigationViewModel: NavigationViewModel
     @EnvironmentObject var authViewModle : AuthViewModel
     var body : some View {
+        ScrollView{
         VStack( alignment  : .center ){
-            Image("todo").resizable().scaledToFill().frame(  width: 400, height: 400,  alignment: .center).padding(.bottom , 20) 
+            Image("todo").resizable().scaledToFill().frame(  width:   UIScreen.main.bounds.height/3,  alignment: .center).padding(.bottom , 20)
             VStack{
             InputView(text: $email , title: "Email Adress" , placeholder: "example@sqli.com")
             InputView(text: $password , title: "Password" , placeholder: "example password" , isSecureFidld: true )
@@ -48,7 +49,7 @@ struct LoginView : View  {
             })
         }.padding( 10).background(Color("background"))
         .navigationBarHidden(true)
-            
+        }
         }
    
     }

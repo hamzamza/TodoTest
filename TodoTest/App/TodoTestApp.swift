@@ -18,7 +18,7 @@ struct TodoTestApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                Color("background").ignoresSafeArea()
+                Color("background") 
                 ContentView()
                     .environmentObject(navigationViewModel)
                     .environmentObject(authViewModel)

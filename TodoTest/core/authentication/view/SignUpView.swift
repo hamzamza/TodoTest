@@ -16,8 +16,9 @@ struct SignUpView : View  {
     @EnvironmentObject var navigationViewModel: NavigationViewModel
     @EnvironmentObject var authViewModel : AuthViewModel
     var body : some View {
+        ScrollView{
         VStack( alignment  : .center ){
-            Image("todo").resizable().scaledToFill().frame(width: 200, height: 200, alignment: .center)
+            Image("todo").resizable().scaledToFill().frame(width:  100 , alignment: .center)
                          VStack{
                 InputView(text: $firstName, title: "First Name", placeholder: "Enter your first name")
                 InputView(text: $lastName, title: "Last Name", placeholder: "Enter your last name")
@@ -35,7 +36,6 @@ struct SignUpView : View  {
                         print("there is some error ")
                     }
                 }
-
             }
             if let msg = authViewModel.errorMessage  {
                 Text(msg)
@@ -54,6 +54,8 @@ struct SignUpView : View  {
                     }
                 })
         }.padding(.top , 30).background(Color("background"))
+            
+        }
     }
  }
  
