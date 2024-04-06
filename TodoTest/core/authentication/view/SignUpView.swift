@@ -13,21 +13,21 @@ struct SignUpView : View  {
     @State private var repassword: String = ""
     @State private var firstName: String = ""
     @State private var lastName: String = ""
-    @EnvironmentObject var navigationViewModel: NavigationViewModel
+    @EnvironmentObject var navigationViewModel: NavigationController
     @EnvironmentObject var authViewModel : AuthViewModel
     var body : some View {
-        ScrollView{
-        VStack( alignment  : .center ){
-            Image("todo").resizable().scaledToFill().frame(width:  100 , alignment: .center)
+      
+        VStack {
+            Image("todolistblackwhite").resizable().scaledToFill().frame(width : 200, height:  200 , alignment: .center)
                          VStack{
                 InputView(text: $firstName, title: "First Name", placeholder: "Enter your first name")
                 InputView(text: $lastName, title: "Last Name", placeholder: "Enter your last name")
                 InputView(text: $email, title: "Email Address", placeholder: "Enter your email address")
                 InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureFidld : true   )
                 InputView(text: $repassword, title: "Confirm Password", placeholder: "Confirm your password" , isSecureFidld  : true)
-            }
+                         }
             Spacer().frame(height: 20)
-            CustomButton(title: "create account " , backgroundColor: Color(.systemBlue), foregroundColor: .white){
+            CustomButton(title: "create account " , backgroundColor : Color(.white), foregroundColor: .black){
                 authViewModel.signUp(withEmail: email, withPassword: password, firstName: firstName, lastName: lastName, rememberMe : true ) { success   in
                     if success {
                        print("account created ")
@@ -38,7 +38,10 @@ struct SignUpView : View  {
                 }
             }
             if let msg = authViewModel.errorMessage  {
-                Text(msg)
+                Spacer().frame(height: 40)
+                ErrorCardView(errorMessage: msg, actionTitle: "Error" ){
+                    authViewModel.errorMessage = nil
+                }
             }
             Spacer()
             Button(
@@ -53,9 +56,8 @@ struct SignUpView : View  {
                         Text("Sign In").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     }
                 })
-        }.padding(.top , 30).background(Color("background"))
-            
-        }
+        }.padding(.top , 30)
+       
     }
  }
  

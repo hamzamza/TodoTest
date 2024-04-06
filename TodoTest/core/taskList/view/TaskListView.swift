@@ -11,48 +11,67 @@ struct TaskListView: View {
     @State private var newTaskName: String = ""
     var body: some View {
         VStack {
-                    List {
-                        ForEach(taskListviewModel.tasksArray, id: \.id) { task in
-                            Text(task.title ?? " ")
-                        }
+            FilterTaskView()
+            List { 
+                        ForEach(taskListviewModel.showenTasks, id: \.id) { task in
+                            CardView(content: task.title ?? "",
+                                     isCheckedInitially: task.completed,
+                                     checkAction: { checked in
+                                        taskListviewModel.toggleTaskDoneStatus(taskID: task.id!)
+                                     },
+                                     editAction: { newTaskName in
+                                        taskListviewModel.editTaskName(taskID: task.id!, newName: newTaskName)
+                                     })
+                            }
                         .onDelete { indexSet in
                             for index in indexSet {
-                                if let taskID = taskListviewModel.tasksArray[index].id {
+                                if let taskID = taskListviewModel.showenTasks[index].id {
                                     taskListviewModel.deleteTask(taskID: taskID)
                                 }
+                               }
                             }
-                        }                     }
-                    
-                    // Text field and "Add" button
+                        }
                     HStack {
-                        TextField("Enter new task", text: $newTaskName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                        
+                        TextField("Add new task...", text: $newTaskName)
+                            .textFieldStyle(OvalTextFieldStyle())
                         Button(action: {
-                            // Add new task with newTaskName
-                            taskListviewModel.addDataToCoreData(companyTitle: newTaskName, desc: "String")
-                            
-                            // Clear text field after adding task
+                            taskListviewModel.addDataToCoreData(title: newTaskName )
                             newTaskName = ""
                         }) {
                             Image(systemName: "plus")
                                 .padding()
                         }
-                        .foregroundColor(.white)
-                        .background(Color.blue)
+                        .foregroundColor(.black)
+                        .background(Color.white)
                         .clipShape(Circle())
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
                         .padding()
                     }
                     .padding(.horizontal)
-                    .background(Color.gray.opacity(0.2))
                     .edgesIgnoringSafeArea(.bottom)
                 }
 
     }
 }
+
 struct TaskListView_Previews: PreviewProvider {
     static var previews: some View {
         TaskListView()
+    }
+}
+
+struct OvalTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .padding(10)
+            .background(Color.white)
+            .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.black, lineWidth: 1)
+            )
     }
 }

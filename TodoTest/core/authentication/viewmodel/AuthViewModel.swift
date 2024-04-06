@@ -6,22 +6,16 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var isAuthenticated: Bool = false
     @Published var errorMessage: String? = nil
-    
         init() {
-             
-           
             }
     
-    
-        func fetchAuthState( completion  : @escaping ( Bool ) -> Void   ) {
+    func fetchAuthState( completion  : @escaping ( Bool ) -> Void   ) {
             if let user = Auth.auth().currentUser {
                 self.userSession = user
                 self.isAuthenticated = true
                 }
-            completion(isAuthenticated)
-            
-        }
-    
+            completion(isAuthenticated) 
+    }
     
         func signIn(withEmail email: String, withPassword password: String, rememberMe: Bool, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -86,9 +80,5 @@ class AuthViewModel: ObservableObject {
         } catch {
             print("Error signing out: \(error.localizedDescription)")
         }
-    }
-    
-    func fetchUser() {
-        // Implement fetching user profile details if needed
     }
 }

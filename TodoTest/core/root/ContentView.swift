@@ -2,11 +2,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var navigationViewModel: NavigationViewModel
+    @EnvironmentObject var navigationViewModel: NavigationController
     @EnvironmentObject var authViewModel : AuthViewModel
     var body: some View {
             VStack{
-            
                       switch navigationViewModel.currentScreen {
                         case .login:
                             LoginView()

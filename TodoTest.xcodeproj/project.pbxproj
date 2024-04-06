@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB4AF24B2BBD54770053E0B0 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF24A2BBD54770053E0B0 /* AuthViewModel.swift */; };
-		BB4AF24F2BBD5B340053E0B0 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF24E2BBD5B340053E0B0 /* NavigationViewModel.swift */; };
+		BB4AF24F2BBD5B340053E0B0 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF24E2BBD5B340053E0B0 /* NavigationController.swift */; };
 		BB4AF2542BBD8B3D0053E0B0 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF2532BBD8B3D0053E0B0 /* TaskViewModel.swift */; };
 		BB4AF2582BBD8B520053E0B0 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF2572BBD8B520053E0B0 /* TaskListView.swift */; };
 		BB4AF25C2BBD913D0053E0B0 /* Task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF25A2BBD913D0053E0B0 /* Task.xcdatamodeld */; };
@@ -26,11 +26,14 @@
 		BB5B56562BBC5AD8005D6244 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB5B56552BBC5AD8005D6244 /* GoogleService-Info.plist */; };
 		BB5B565A2BBC609E005D6244 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BB5B56592BBC609E005D6244 /* FirebaseAuth */; };
 		BB5B565C2BBC609E005D6244 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BB5B565B2BBC609E005D6244 /* FirebaseFirestore */; };
+		BB66C0E02BBEBB540029A3C9 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C0DF2BBEBB540029A3C9 /* CardView.swift */; };
+		BB66C0E32BBEC5D90029A3C9 /* ErrorCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C0E22BBEC5D90029A3C9 /* ErrorCardView.swift */; };
+		BB66C0E62BBEE6960029A3C9 /* FilterTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C0E52BBEE6960029A3C9 /* FilterTaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BB4AF24A2BBD54770053E0B0 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		BB4AF24E2BBD5B340053E0B0 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
+		BB4AF24E2BBD5B340053E0B0 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		BB4AF2532BBD8B3D0053E0B0 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		BB4AF2572BBD8B520053E0B0 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		BB4AF25B2BBD913D0053E0B0 /* Task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Task.xcdatamodel; sourceTree = "<group>"; };
@@ -48,6 +51,9 @@
 		BB5B564F2BBC3CA5005D6244 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		BB5B56522BBC5426005D6244 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB5B56552BBC5AD8005D6244 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BB66C0DF2BBEBB540029A3C9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BB66C0E22BBEC5D90029A3C9 /* ErrorCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCardView.swift; sourceTree = "<group>"; };
+		BB66C0E52BBEE6960029A3C9 /* FilterTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,9 @@
 			children = (
 				BB5B56492BBC1A9D005D6244 /* InputView.swift */,
 				BB5B564C2BBC2D5C005D6244 /* ButtonView.swift */,
+				BB66C0DF2BBEBB540029A3C9 /* CardView.swift */,
+				BB66C0E22BBEC5D90029A3C9 /* ErrorCardView.swift */,
+				BB66C0E52BBEE6960029A3C9 /* FilterTaskView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -177,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5B563A2BBC1331005D6244 /* ContentView.swift */,
-				BB4AF24E2BBD5B340053E0B0 /* NavigationViewModel.swift */,
+				BB4AF24E2BBD5B340053E0B0 /* NavigationController.swift */,
 			);
 			path = root;
 			sourceTree = "<group>";
@@ -295,16 +304,19 @@
 			files = (
 				BB4AF25C2BBD913D0053E0B0 /* Task.xcdatamodeld in Sources */,
 				BB4AF2632BBDA2F90053E0B0 /* LoadingPage.swift in Sources */,
-				BB4AF24F2BBD5B340053E0B0 /* NavigationViewModel.swift in Sources */,
+				BB4AF24F2BBD5B340053E0B0 /* NavigationController.swift in Sources */,
 				BB5B56422BBC13AE005D6244 /* LoginView.swift in Sources */,
+				BB66C0E02BBEBB540029A3C9 /* CardView.swift in Sources */,
 				BB5B564A2BBC1A9D005D6244 /* InputView.swift in Sources */,
 				BB4AF2582BBD8B520053E0B0 /* TaskListView.swift in Sources */,
+				BB66C0E62BBEE6960029A3C9 /* FilterTaskView.swift in Sources */,
 				BB4AF2542BBD8B3D0053E0B0 /* TaskViewModel.swift in Sources */,
 				BB5B564D2BBC2D5C005D6244 /* ButtonView.swift in Sources */,
 				BB5B563C2BBC1331005D6244 /* ContentView.swift in Sources */,
 				BB4AF24B2BBD54770053E0B0 /* AuthViewModel.swift in Sources */,
 				BB5B56502BBC3CA5005D6244 /* SignUpView.swift in Sources */,
 				BB5B56222BBC12B3005D6244 /* TodoTestApp.swift in Sources */,
+				BB66C0E32BBEC5D90029A3C9 /* ErrorCardView.swift in Sources */,
 				BB5B56532BBC5426005D6244 /* User.swift in Sources */,
 				BB4AF2602BBD92060053E0B0 /* Persister.swift in Sources */,
 			);

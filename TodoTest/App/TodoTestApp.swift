@@ -12,13 +12,12 @@ struct TodoTestApp: App {
     init() {
         FirebaseApp.configure()
     }
-    let navigationViewModel = NavigationViewModel()
+    let navigationViewModel = NavigationController()
     let authViewModel = AuthViewModel()
     let taskListViewModel  = TaskListViewModel()
     var body: some Scene {
         WindowGroup {
             ZStack {
-                Color("background") 
                 ContentView()
                     .environmentObject(navigationViewModel)
                     .environmentObject(authViewModel)

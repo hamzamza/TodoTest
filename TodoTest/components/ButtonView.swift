@@ -20,18 +20,22 @@ struct CustomButton: View {
         Button(action: action) {
             HStack{
                 Text(title).fontWeight(.semibold)
-                Image(systemName:   "arrow.right")
+                Image(systemName: "arrow.right")
                      
             }.foregroundColor(foregroundColor)
             .frame(width: UIScreen.main.bounds.width - 10, height: 48 )
         }.background( backgroundColor )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.black, lineWidth: 2)
+        )
         .cornerRadius(10)
     }
 }
 
 struct CutomButtonPreviw : PreviewProvider {
     static var  previews: some View {
-        CustomButton( title: "Submit", backgroundColor: .blue , foregroundColor: .white){
+        CustomButton( title: "Submit", backgroundColor: .white , foregroundColor: .black){
             print("button clicked ")
         }
     }

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        ProgressView("Loading...")
+            VStack{
+            Image("todo").resizable().scaledToFill().frame(width:  100 , height: 100, alignment: .center)
+            ProgressView( )
             .progressViewStyle(CircularProgressViewStyle())
-            .padding()
+ 
+        }
     }
 }
 struct LoadingPage_Previews: PreviewProvider {

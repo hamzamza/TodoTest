@@ -12,6 +12,7 @@ struct InputView : View  {
     let title : String
     let placeholder : String
     var isSecureFidld  = false
+    
     var body: some View {
         VStack(alignment: .leading , spacing:  12 ) {
             Text(title)
@@ -19,10 +20,16 @@ struct InputView : View  {
                 .fontWeight(.semibold)
                 .font(.footnote)
             if isSecureFidld {
-                SecureField(  placeholder ,text:  $text ).font(.system(size: 14))
-            }
+                SecureField(  placeholder ,text:  $text )
+                    .autocapitalization(.none) // Disable autocapitalization
+                     
+                    .font(.system(size: 14))
+           }
             else {
-                TextField(  placeholder ,text:  $text ).font(.system(size: 14))
+                TextField(  placeholder ,text:  $text )
+                    .autocapitalization(.none) // Disable autocapitalization
+                    
+                    .font(.system(size: 14))
             }
             Divider()
         }.padding(.horizontal , 10 ).padding(.vertical , 4)

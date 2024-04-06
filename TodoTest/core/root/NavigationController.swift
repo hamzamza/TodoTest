@@ -1,7 +1,7 @@
 // I've creted this navigation view model because I can't use navigation view to navigate programmaticly to other screen
 
 import Foundation
-class NavigationViewModel: ObservableObject {
+class NavigationController: ObservableObject {
     enum Screen {
         case login
         case signUp

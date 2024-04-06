@@ -10,19 +10,18 @@ import SwiftUI
 struct LoginView : View  {
     @State private var email  = ""
     @State private var password = ""
-    @EnvironmentObject var navigationViewModel: NavigationViewModel
-    @EnvironmentObject var authViewModle : AuthViewModel
+    @EnvironmentObject var navigationViewModel: NavigationController
+    @EnvironmentObject var authViewModel : AuthViewModel
     var body : some View {
-        ScrollView{
-        VStack( alignment  : .center ){
-            Image("todo").resizable().scaledToFill().frame(  width:   UIScreen.main.bounds.height/3,  alignment: .center).padding(.bottom , 20)
+         
+        VStack {
+            Image("todolistblackwhite").resizable().scaledToFill().frame(  height :   UIScreen.main.bounds.height/3,   alignment: .center).padding(.bottom , 20)
             VStack{
             InputView(text: $email , title: "Email Adress" , placeholder: "example@sqli.com")
             InputView(text: $password , title: "Password" , placeholder: "example password" , isSecureFidld: true )
             }
-            Spacer().frame(height: 20)
-            CustomButton(title: "Sign In " , backgroundColor: Color(.systemBlue), foregroundColor: .white){
-                authViewModle.signIn(withEmail : email , withPassword  : password , rememberMe : true ){ isLogedIn in
+            CustomButton(title: "Sign In " , backgroundColor: Color(.white), foregroundColor: .black){
+                authViewModel.signIn(withEmail : email , withPassword  : password , rememberMe : true ){ isLogedIn in
                     if isLogedIn {
                         navigationViewModel.navigateTo(screen: .tasklist)
                     }else {
@@ -30,14 +29,17 @@ struct LoginView : View  {
                     }
                 }
             }
-            if let msg = authViewModle.errorMessage  {
-                Text(msg)
+            if let msg = authViewModel.errorMessage  {
+                Spacer().frame(height: 40)
+                ErrorCardView(errorMessage: msg, actionTitle: "Error" ){
+                    authViewModel.errorMessage = nil
+                }
             }
-           
-            Spacer()
+           Spacer()
+          
             Button(action : {
                 withAnimation(.easeInOut(duration:0.5)){
-                    authViewModle.errorMessage = nil 
+                    authViewModel.errorMessage = nil 
                     navigationViewModel.navigateTo(screen: .signUp)
                 }
             } , label  : {
@@ -47,10 +49,10 @@ struct LoginView : View  {
                 }
        
             })
-        }.padding( 10).background(Color("background"))
+        }.padding( 10)
         .navigationBarHidden(true)
         }
-        }
+        
    
     }
  
