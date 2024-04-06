@@ -35,8 +35,11 @@ struct TaskListView: View {
                         TextField("Add new task...", text: $newTaskName)
                             .textFieldStyle(OvalTextFieldStyle())
                         Button(action: {
-                            taskListviewModel.addDataToCoreData(title: newTaskName )
-                            newTaskName = ""
+                                let trimmedTaskName = newTaskName.trimmingCharacters(in: .whitespacesAndNewlines)
+                                 if !trimmedTaskName.isEmpty {
+                                     taskListviewModel.addDataToCoreData(title: trimmedTaskName)
+                                     newTaskName = ""
+                               }
                         }) {
                             Image(systemName: "plus")
                                 .padding()

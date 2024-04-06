@@ -10,9 +10,8 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
             VStack{
-            Image("todo").resizable().scaledToFill().frame(width:  100 , height: 100, alignment: .center)
-            ProgressView( )
-            .progressViewStyle(CircularProgressViewStyle())
+            Image("todolistblackwhite").resizable().scaledToFill().frame(width:  100 , height: 100, alignment: .center)
+            ProgressView( ).progressViewStyle(CircularProgressViewStyle())
  
         }
     }

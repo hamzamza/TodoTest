@@ -21,13 +21,13 @@ struct InputView : View  {
                 .font(.footnote)
             if isSecureFidld {
                 SecureField(  placeholder ,text:  $text )
-                    .autocapitalization(.none) // Disable autocapitalization
+                    .autocapitalization(.none)
                      
                     .font(.system(size: 14))
            }
             else {
                 TextField(  placeholder ,text:  $text )
-                    .autocapitalization(.none) // Disable autocapitalization
+                    .autocapitalization(.none)  
                     
                     .font(.system(size: 14))
             }

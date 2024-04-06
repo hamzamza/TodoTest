@@ -4,66 +4,72 @@
 //
 //  Created by Hamza Douaij on 4/2/24.
 //
-
-import Foundation
 import SwiftUI
-struct SignUpView : View  {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var repassword: String = ""
-    @State private var firstName: String = ""
-    @State private var lastName: String = ""
+
+struct SignUpView: View {
+    @State private var email = ""
+    @State private var password = ""
+    @State private var repassword = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
+    
     @EnvironmentObject var navigationViewModel: NavigationController
-    @EnvironmentObject var authViewModel : AuthViewModel
-    var body : some View {
-      
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    var body: some View {
         VStack {
-            Image("todolistblackwhite").resizable().scaledToFill().frame(width : 200, height:  200 , alignment: .center)
-                         VStack{
+            Image("todolistblackwhite")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 200, height: 200)
+            
+            VStack(spacing: 20) {
                 InputView(text: $firstName, title: "First Name", placeholder: "Enter your first name")
                 InputView(text: $lastName, title: "Last Name", placeholder: "Enter your last name")
                 InputView(text: $email, title: "Email Address", placeholder: "Enter your email address")
-                InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureFidld : true   )
-                InputView(text: $repassword, title: "Confirm Password", placeholder: "Confirm your password" , isSecureFidld  : true)
-                         }
-            Spacer().frame(height: 20)
-            CustomButton(title: "create account " , backgroundColor : Color(.white), foregroundColor: .black){
-                authViewModel.signUp(withEmail: email, withPassword: password, firstName: firstName, lastName: lastName, rememberMe : true ) { success   in
+                InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureFidld: true)
+                InputView(text: $repassword, title: "Confirm Password", placeholder: "Confirm your password", isSecureFidld: true)
+            }
+            .padding(.top, 20)
+            
+            CustomButton(title: "Create Account", backgroundColor: .white, foregroundColor: .black) {
+                authViewModel.signUp(withEmail: email, withPassword: password, firstName: firstName, lastName: lastName, rememberMe: true) { success in
                     if success {
-                       print("account created ")
-                    }
-                    else {
-                        print("there is some error ")
+                        print("Account created")
+                    } else {
+                        print("There is some error")
                     }
                 }
             }
-            if let msg = authViewModel.errorMessage  {
+            
+            if let errorMessage = authViewModel.errorMessage {
                 Spacer().frame(height: 40)
-                ErrorCardView(errorMessage: msg, actionTitle: "Error" ){
+                ErrorCardView(errorMessage: errorMessage, actionTitle: "Error") {
                     authViewModel.errorMessage = nil
                 }
             }
+            
             Spacer()
-            Button(
-                action: {
-                    authViewModel.errorMessage = nil
-                    withAnimation(.easeInOut(duration:0.5)){
-                        navigationViewModel.navigateBack( ) }
-                },
-                label: {
-                    HStack{
-                        Text("You Already Have One " ).fontWeight(.light).foregroundColor(.blue)
-                        Text("Sign In").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    }
-                })
-        }.padding(.top , 30)
-       
-    }
- }
- 
-struct SignUpPriview : PreviewProvider{
-    static var previews: some View{
-        SignUpView()
+            
+            Button(action: {
+                authViewModel.errorMessage = nil
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    navigationViewModel.navigateBack()
+                }
+            }) {
+                HStack {
+                    Text("Already have an account").fontWeight(.light).foregroundColor(.blue)
+                    Text("Sign In").fontWeight(.bold)
+                }
+            }
+        }
+        .padding(.top, 30)
+        .padding(.horizontal, 20)
     }
 }
 
+struct SignUpPriview: PreviewProvider {
+    static var previews: some View {
+        SignUpView()
+    }
+}

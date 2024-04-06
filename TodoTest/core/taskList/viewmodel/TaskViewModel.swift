@@ -5,12 +5,16 @@
 //  Created by Hamza Douaij on 4/3/24.
 //
 
-import Foundation
-import CoreData
  
 
+import SwiftUI
+import CoreData
+
 class TaskListViewModel: ObservableObject {
-    private let viewContext = PersistenceController.shared.viewContext
+    // i did all those field undeone TAsks doneTasks showen TAsks tasksArrray just because i want to imrove some performance of the app
+    // so cause i don't want to render each time i chagnged the screen , I mean while navigation I don't want the user to wait a lot
+    // other ways we can filter when the user does some other task like creating a new task or deleting it so it will not see the deference 
+    private let service: CoreDataTaskService
     @Published var tasksArray: [Task] = []
     @Published var undoneTasks: [Task] = []
     @Published var doneTasks: [Task] = []
@@ -23,85 +27,72 @@ class TaskListViewModel: ObservableObject {
         case Undone
     }
  
-    func changeFilter( _ filterBy  : Filter ){
+    func changeFilter(_ filterBy: Filter) {
         selectedFilter = filterBy
         switch selectedFilter {
         case .All:
-            do {   showenTasks =  tasksArray   }
-        case .Done :
-        do { showenTasks = doneTasks}
-        case .Undone :
-        do { showenTasks = undoneTasks}
-        
+            showenTasks = tasksArray
+        case .Done:
+            showenTasks = doneTasks
+        case .Undone:
+            showenTasks = undoneTasks
         }
     }
-    init() {
+    
+    init( ) {
+        self.service = CoreDataTaskService(viewContext: PersistenceController.shared.viewContext)
         fetchAllTasks()
         showenTasks = tasksArray
     }
     
     func fetchAllTasks() {
-        let request = NSFetchRequest<Task>(entityName: "Task")
         do {
-            tasksArray = try viewContext.fetch(request)
+            tasksArray = try service.fetchAllTasks()
             filterTasks(tasksArray)
             changeFilter(selectedFilter)
-        }catch {
-            print("DEBUG: Some error occured while fetching")
+        } catch {
+            print("DEBUG: Some error occurred while fetching: \(error)")
         }
     }
-    func filterTasks(_ tasks :  [Task]){
-        doneTasks = []
-        undoneTasks = []
-        tasks.forEach{
-            if($0.completed){
-            doneTasks.append($0)
-            }else{
-          undoneTasks.append($0)
-            }
-        }
+    
+    func filterTasks(_ tasks: [Task]) {
+        doneTasks = tasks.filter { $0.completed }
+        undoneTasks = tasks.filter { !$0.completed }
     }
     
     func toggleTaskDoneStatus(taskID: UUID) {
-           if let taskIndex = tasksArray.firstIndex(where: { $0.id == taskID }) {
-            tasksArray[taskIndex].completed.toggle()
-               save()
-           }
-       }
-    
-    func deleteTask(taskID: UUID) {
-            if let taskIndex = tasksArray.firstIndex(where: { $0.id == taskID }) {
-                viewContext.delete(tasksArray[taskIndex])
-                tasksArray.remove(at: taskIndex)
-                save()
-            }
+        do {
+            try service.toggleTaskDoneStatus(taskID: taskID)
+            fetchAllTasks()
+        } catch {
+            print("Error toggling task status: \(error)")
         }
-        
-    func editTaskName(taskID: UUID, newName: String) {
-            if let taskIndex = tasksArray.firstIndex(where: { $0.id == taskID }) {
-                tasksArray[taskIndex].title = newName
-                save()
-            }
-        }
-
-    
-    func addDataToCoreData(title: String ) {
-        let task = Task(context: viewContext)
-        task.id = UUID()
-        task.title = title
-        save()
-        self.fetchAllTasks()
-        filterTasks(tasksArray)
     }
     
-    func save() {
+    func deleteTask(taskID: UUID) {
         do {
-            try viewContext.save()
-            filterTasks(tasksArray)
-            changeFilter(selectedFilter)
-        }catch {
-            print("Error saving")
+            try service.deleteTask(taskID: taskID)
+            fetchAllTasks()
+        } catch {
+            print("Error deleting task: \(error)")
+        }
+    }
+    
+    func editTaskName(taskID: UUID, newName: String) {
+        do {
+            try service.editTaskName(taskID: taskID, newName: newName)
+            fetchAllTasks()
+        } catch {
+            print("Error editing task name: \(error)")
+        }
+    }
+    
+    func addDataToCoreData(title: String) {
+        do {
+            try service.addTask(title: title)
+            fetchAllTasks()
+        } catch {
+            print("Error adding task: \(error)")
         }
     }
 }
-

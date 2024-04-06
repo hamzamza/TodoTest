@@ -1,4 +1,4 @@
- 
+ // this file contains the navigationController
 import SwiftUI
 
 struct ContentView: View {
