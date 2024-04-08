@@ -17,12 +17,12 @@ struct TodoTestApp: App {
     let taskListViewModel  = TaskListViewModel()
     var body: some Scene {
         WindowGroup {
-            ZStack {
+       
                 ContentView()
                     .environmentObject(navigationViewModel)
                     .environmentObject(authViewModel)
                     .environmentObject(taskListViewModel )
-            }
+           
         }
     }
 }
